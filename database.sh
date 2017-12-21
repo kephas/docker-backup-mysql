@@ -38,7 +38,7 @@ run_in_container() {
 
 case $ACTION in
     backup)
-		COMMAND="mysqldump ${AUTH} ${DATABASE}";
+		COMMAND="mysqldump --skip-dump-date ${AUTH} --databases ${DATABASE}";
 		run_in_container "$COMMAND" > "$FILE";;
     restore)
 		COMMAND="mysql ${AUTH} ${DATABASE}";
