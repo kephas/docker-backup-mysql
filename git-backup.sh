@@ -6,7 +6,7 @@
 USERNAME="Backup $(hostname)"
 EMAIL=root@$(hostname --long)
 DIR=./backup;
-
+FILE=backup.sql
 
 
 if [[ -n "$1" ]]; then
@@ -21,7 +21,10 @@ case $ACTION in
 		(git init $DIR;
 		 cd $DIR;
 		 git config --local user.name "${USERNAME}";
-		 git config --local user.email "${EMAIL}";);;
+		 git config --local user.email "${EMAIL}";
+		 touch ${FILE};
+		 git add ${FILE};
+		 git commit -am "Create empty backup file");;
 	save)
 		(cd $DIR;
 		 git commit -am "New backup";
