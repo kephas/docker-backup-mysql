@@ -20,8 +20,10 @@ fi
 
 if [[ -n "$2" ]]; then
     VERSION="-$2";
+	DATE_OPT="";
 else
     VERSION="";
+	DATE_OPT="--skip-dump-date";
 fi;
 
 
@@ -38,7 +40,7 @@ run_in_container() {
 
 case $ACTION in
     backup)
-		COMMAND="mysqldump --skip-dump-date ${AUTH} --databases ${DATABASE}";
+		COMMAND="mysqldump ${DATE_OPT} ${AUTH} --databases ${DATABASE}";
 		run_in_container "$COMMAND" > "$FILE";;
     restore)
 		COMMAND="mysql ${AUTH} ${DATABASE}";
