@@ -44,5 +44,5 @@ case $ACTION in
 		run_in_container "$COMMAND" > "$FILE";;
     restore)
 		COMMAND="mysql ${AUTH} ${DATABASE}";
-		run_in_container "$COMMAND" < $FILE;;
+		run_in_container "$COMMAND" < "$FILE";;
 esac;
