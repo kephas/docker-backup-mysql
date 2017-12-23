@@ -16,15 +16,21 @@ else
     exit 1;
 fi
 
+git_config() {
+	(cd $DIR;
+	 git config --local user.name "${USERNAME}";
+	 git config --local user.email "${EMAIL}");
+}
+
 case $ACTION in
 	init)
 		(git init $DIR;
-		 cd $DIR;
-		 git config --local user.name "${USERNAME}";
-		 git config --local user.email "${EMAIL}";
+		 git_config;
 		 touch ${FILE};
 		 git add ${FILE};
 		 git commit -am "Create empty backup file");;
+	config)
+		git_config;;
 	save)
 		(cd $DIR;
 		 git commit -am "New backup";
